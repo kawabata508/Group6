@@ -29,6 +29,7 @@ public class TestListStudent implements Serializable {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	
 	public int getPoint() {
 		return point;
 	}

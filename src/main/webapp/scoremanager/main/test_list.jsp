@@ -1,3 +1,8 @@
+<%-- ///////////////// --%>
+<%-- ///// 未完成 ///// --%>
+<%-- ///// 要修正 ///// --%>
+<%-- ///////////////// --%>
+
 <%-- 成績参照JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>

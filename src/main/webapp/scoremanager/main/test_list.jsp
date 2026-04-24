@@ -76,7 +76,8 @@
 				</div>
 			</form>
 			<label style="color: #00e6e6;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</label>
-			
+
+<%--
 			<c:choose>
 				<c:when test="${students.size() > 0}">
 					<div>科目：${f3} (${f4 })</div>
@@ -128,7 +129,8 @@
 					</table>
 				</c:when>
 			</c:choose>
- 
+--%>
+
 		</section>
 	</c:param>
 </c:import>

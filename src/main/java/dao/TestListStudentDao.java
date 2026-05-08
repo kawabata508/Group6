@@ -1,3 +1,4 @@
+// 河端
 package dao;
 
 import java.sql.Connection;
@@ -24,7 +25,11 @@ public class TestListStudentDao extends Dao {
 				testListStudent.setSubjectName(rSet.getString("subject_name"));
 				testListStudent.setSubjectCd(rSet.getString("subject_cd"));
 				testListStudent.setNum(rSet.getInt("num"));
-				testListStudent.setPoint((Integer)rSet.getObject("point"));
+				int point = rSet.getInt("point");
+				if (rSet.wasNull()) {
+					continue;
+				}
+				testListStudent.setPoint(point);
 				
 				list.add(testListStudent);
 			}

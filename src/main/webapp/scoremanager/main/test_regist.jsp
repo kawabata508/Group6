@@ -1,3 +1,4 @@
+<%-- 杉本・村上 --%>
 <%-- 成績管理JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
@@ -86,16 +87,18 @@
 									<td>${test.classNum}</td>
 									<td>${test.student.no}</td>
 									<td>${test.student.name}</td>
-									<td><input type="text" size="20" name="point_${test.student.no}" value="${test.point}" required></td>
+									<td><input type="text" size="20" name="point_${test.student.no}" value="${test.point == -1 ? "" : test.point}"</td>
+									<c:if test="${test.student.no == errStuNo}">
+										<div class="mt-2 text-warning">${error}</div>
+									</c:if>
 									<input type="hidden" name="regist" value="${test.student.no}">
-									
 								</tr>
 							</c:forEach>
 							
 						</table>
 						<input type="hidden" name="count" value="${f4}">
 						<input type="hidden" name="subject" value="${f3.cd}">
-						<input type="submit" value="登録して終了" style="padding: 0.4em 0.8em; width: auto; height: auto; border: 0px; border-radius: 5px; color: white; background-color: #1e90ff">
+						<input type="submit" value="登録して終了" style="padding: 0.4em 0.8em; width: auto; height: auto; border: 0px; border-radius: 5px; color: white; background-color: #6c757d">
 					</form>
 				</c:when>
 				

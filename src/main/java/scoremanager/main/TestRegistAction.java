@@ -1,3 +1,4 @@
+// 河端・村上
 package scoremanager.main;
 
 import java.time.LocalDate;

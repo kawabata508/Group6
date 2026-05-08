@@ -1,3 +1,4 @@
+<%-- murakami --%>
 <%-- 成績一覧（学生）JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
@@ -67,8 +68,8 @@
 							学生情報
 						</div>
 						<div class="col-6 col-md-4">
-							<label class="form-label" for="student-f1-select">学生番号</label>
-							<input type="text" style="width: 100%;" name="f4" value="${fn:trim(f4.no)}" placeholder="学生番号を入力してください">
+							<label class="form-label" for="student-f4-select">学生番号</label>
+							<input type="text" class="form-control" id="student-f4-select" name="f4" value="${fn:trim(f4.no)}" placeholder="学生番号を入力してください">
 						</div>
 						
 						<div class="col-4 text-center">
@@ -80,34 +81,42 @@
 					</div>
 				</form>
 			</div>
-			<label style="color: #00e6e6;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</label>
 			
 			<c:choose>
-				<c:when test="${test_list_student.size() > 0}">
-					<div>氏名：${f4.name} (${fn:trim(f4.no)})</div>
-					<table class="table table-hover">
-						<tr>
-							<th>科目名</th>
-							<th>科目コード</th>
-							<th>回数</th>
-							<th>点数</th>
-						</tr>
-						
-						<c:forEach var="tes_stu" items="${test_list_student}">
-							<c:if test="${!empty tes_stu.point}">
-								<tr>
-									<td>${tes_stu.subjectName}</td>
-									<td>${tes_stu.subjectCd}</td>
-									<td>${tes_stu.num}</td>
-									<td>${tes_stu.point}</td>
-								</tr>
-							</c:if>
-						</c:forEach>
-					</table>
+				<c:when test="${!empty error}">
+					${error}
 				</c:when>
+				
 				<c:otherwise>
-					<div>成績情報が見つかりませんでした</div>
+					<div>氏名：${f4.name} (${fn:trim(f4.no)})</div>
+					<c:choose>
+						<c:when test="${test_list_student.size() > 0}">
+							<table class="table table-hover">
+								<tr>
+									<th>科目名</th>
+									<th>科目コード</th>
+									<th>回数</th>
+									<th>点数</th>
+								</tr>
+								
+								<c:forEach var="tes_stu" items="${test_list_student}">
+									<c:if test="${!empty tes_stu.point}">
+										<tr>
+											<td>${tes_stu.subjectName}</td>
+											<td>${tes_stu.subjectCd}</td>
+											<td>${tes_stu.num}</td>
+											<td>${tes_stu.point}</td>
+										</tr>
+									</c:if>
+								</c:forEach>
+							</table>
+						</c:when>
+						<c:otherwise>
+							<div>成績情報が見つかりませんでした</div>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
+				
 			</c:choose>
 		</section>
 	</c:param>

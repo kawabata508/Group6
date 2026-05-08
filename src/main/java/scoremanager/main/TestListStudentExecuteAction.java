@@ -1,3 +1,4 @@
+// 河端
 package scoremanager.main;
 
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class TestListStudentExecuteAction extends Action {
 		TestListStudentDao tListStuDao = new TestListStudentDao();
 		
 		List<TestListStudent> tListStu=null;
-		//String error = null; // エラーメッセージ
+		String error = null; // エラーメッセージ
 		
 		// 入力値の取得
 		String stuNo = req.getParameter("f4");
@@ -66,7 +67,13 @@ public class TestListStudentExecuteAction extends Action {
 		
 		Student student = stuDao.get(stuNo);
 		
-		tListStu = tListStuDao.filter(student);
+		if (student == null) {
+			tListStu = null;
+			error = "学生情報が見つかりませんでした";
+			req.setAttribute("error", error);
+		} else {
+			tListStu = tListStuDao.filter(student);
+		}
 				
 		// レスポンス値をセット
 		req.setAttribute("f4", student);

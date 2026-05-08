@@ -1,3 +1,4 @@
+// 杉本
 package scoremanager.main;
 
 import bean.Student;
@@ -22,6 +23,9 @@ public class StudentCreateExecuteAction extends Action {
 		boolean isAttend = false;
 		String error = null;
 		int judg = 1;
+		
+		req.setAttribute("no", no);
+		req.setAttribute("name", name);
 		
 		if (entYearStr.equals("0")) {
 			error = "入学年度を選択してください";

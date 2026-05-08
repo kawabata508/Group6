@@ -1,3 +1,4 @@
+// 河端・村上
 package dao;
 
 import java.sql.Connection;
@@ -21,21 +22,34 @@ public class TestListSubjectDao extends Dao {
 		List<TestListSubject> list = new ArrayList<>();
 		
 		try {
-			while(rSet.next()) {
-				TestListSubject testListSubject = new TestListSubject();
-				
-				testListSubject.setEntYear(rSet.getInt("ent_year"));
-				testListSubject.setStudentNo(rSet.getString("student_no"));
-				testListSubject.setStudentName(rSet.getString("student_name"));
-				testListSubject.setClassNum(rSet.getString("class_num"));
-				Map<String, Integer> point = new HashMap<>();
-				point.put(rSet.getString("no"), (Integer)rSet.getObject("point"));
-				rSet.next();
-				point.put(rSet.getString("no"), (Integer)rSet.getObject("point"));
-				testListSubject.setPoints(point);
-				
-				list.add(testListSubject);
+			// 学生番号をキーにして、TestListSubjectを操作する
+			Map<String, TestListSubject> map = new HashMap<>();
+
+			while (rSet.next()) {
+				// student_noを取得する
+			    String studentNo = rSet.getString("student_no");
+			    
+			    // まだこの学生がいない場合は新しく作る
+			    if (!map.containsKey(studentNo)) {
+			        TestListSubject testListSubject = new TestListSubject();
+			        testListSubject.setEntYear(rSet.getInt("ent_year"));
+			        testListSubject.setStudentNo(studentNo);
+			        testListSubject.setStudentName(rSet.getString("student_name"));
+			        testListSubject.setClassNum(rSet.getString("class_num"));
+			        
+			        // 点数格納用のMapを初期化してセット
+			        testListSubject.setPoints(new HashMap<String, Integer>());
+			        
+			        map.put(studentNo, testListSubject);
+			    }
+			    
+			    // 学生がいたらPointsに挿入する
+			    TestListSubject currentSubject = map.get(studentNo);
+			    currentSubject.getPoints().put(rSet.getString("no"),  (Integer)rSet.getObject("point"));
 			}
+
+			// listにTestListSubjectを入れる
+			list.addAll(map.values());		
 			
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();

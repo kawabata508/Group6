@@ -1,3 +1,4 @@
+// 河端
 package dao;
 
 import java.sql.Connection;
@@ -10,11 +11,11 @@ import bean.Teacher;
 public class TeacherDao extends Dao {
 	
 	public Teacher get(String id) throws Exception {
+		Teacher teacher = new Teacher();
 		
 		Connection connection = getConnection();
-		PreparedStatement statement = null;
 		
-		Teacher teacher = new Teacher();
+		PreparedStatement statement = null;
 		
 		try {
 			statement = connection.prepareStatement("select * from teacher where id=?");
@@ -56,11 +57,11 @@ public class TeacherDao extends Dao {
 	}
 	
 	public Teacher login(String id, String password) throws Exception {
+		Teacher teacher = new Teacher();
 		
 		Connection connection = getConnection();
-		PreparedStatement statement = null;
 		
-		Teacher teacher = new Teacher();
+		PreparedStatement statement = null;
 		
 		try {
 			statement = connection.prepareStatement(

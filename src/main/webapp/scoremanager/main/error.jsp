@@ -1,3 +1,4 @@
+<%-- 杉本 --%>
 <%-- エラーページJSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
@@ -12,7 +13,7 @@
 	
 	<c:param name="content">
 		<section class="me-4">
-			<p>エラーが発生しました</p>
+			<p><label>エラーが発生しました</label></p>
 		</section>
 	</c:param>
 </c:import>

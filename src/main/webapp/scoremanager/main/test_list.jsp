@@ -1,3 +1,4 @@
+<%-- 杉本 --%>
 <%-- 成績参照JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
@@ -66,8 +67,8 @@
 							学生情報
 						</div>
 						<div class="col-6 col-md-4">
-							<label class="form-label" for="student-f1-select">学生番号</label>
-							<input type="text" style="width: 100%;" name="f4" value="${f4 }" placeholder="学生番号を入力してください">
+							<label class="form-label" for="student-f4-select">学生番号</label>
+							<input type="text" class="form-control" id="student-f4-select" name="f4" value="${f4 }" placeholder="学生番号を入力してください">
 						</div>
 						
 						<div class="col-4 text-center">
@@ -79,7 +80,7 @@
 					</div>
 				</form>
 			</div>
-			<label style="color: #00e6e6;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</label>
+			<label style="color: #12cbf0;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</label>
 		</section>
 	</c:param>
 </c:import>

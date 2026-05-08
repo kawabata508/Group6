@@ -1,3 +1,4 @@
+// 河端
 package dao;
 
 import java.sql.Connection;
@@ -33,9 +34,9 @@ public class TestDao extends Dao {
 			
 			ResultSet rSet = statement.executeQuery();
 			
+			SchoolDao schoolDao = new SchoolDao();
 			StudentDao studentDao = new StudentDao();
 			SubjectDao subjectDao = new SubjectDao();
-			SchoolDao schoolDao = new SchoolDao();
 			
 			if (rSet.next()) {
 				test.setStudent(studentDao.get(rSet.getString("student_no")));
@@ -84,7 +85,12 @@ public class TestDao extends Dao {
 				test.setSubject(subjectDao.get(rSet.getString("subject_cd"), school));
 				test.setSchool(school);
 				test.setNo(rSet.getInt("no"));
-				test.setPoint(rSet.getInt("point"));
+				int point = rSet.getInt("point");
+				if (rSet.wasNull()) {
+					test.setPoint(-1);
+				} else {
+					test.setPoint(point);
+				}
 				test.setClassNum(rSet.getString("class_num"));
 				
 				list.add(test);

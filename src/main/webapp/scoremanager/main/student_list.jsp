@@ -44,7 +44,7 @@
 							<%-- パラメーターf3が存在している場合checkedを追記 --%>
 							<input class="form-check-input" type="checkbox"
 							id="student-f3-check" name="f3" value="t"
-							<c:if test="{!empty f3}">checked</c:if> />
+							<c:if test="${!empty f3}">checked</c:if> />
 						</label>
 					</div>
 					<div class="col-2 text-center">
@@ -57,7 +57,7 @@
 			
 			<c:choose>
 				<c:when test="${students.size()>0}">
-					<div>検索結果：${student.size()}件</div>
+					<div>検索結果：${students.size()}件</div>
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>

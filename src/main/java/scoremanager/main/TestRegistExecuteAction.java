@@ -45,18 +45,26 @@ public class TestRegistExecuteAction extends Action {
 		    teacher.setSchool(school);
 		}
 		School school = teacher.getSchool();
+
+		List<String> errStuNoList = new ArrayList<>();
 		
 		for (String stuNo : stuNoList) {
 			String key = "point_" + stuNo;
 	        String point = req.getParameter(key);
 	        if (point != null && !point.equals("")) {
 	        	// エラー文表示
+	        	// 数値でないものが入力されていたらエラー文を表示する
+	        	if (!point.matches("-?\\d+")) {
+	        		error = "0～100の範囲で入力してください";
+	        		req.setAttribute("error", error);
+	        		errStuNoList.add(stuNo);
+	        		continue;
+	        	}
 	        	if (Integer.parseInt(point) < 0 || Integer.parseInt(point) > 100) {
 	        		error = "0～100の範囲で入力してください";
 	        		req.setAttribute("error", error);
-	        		req.setAttribute("errStuNo", stuNo);
-	        		req.getRequestDispatcher("TestRegist.action?f1="+stuDao.get(stuNo).getEntYear()+"&f2="+stuDao.get(stuNo).getClassNum().trim()+"&f3="+subCd+"&f4="+no).forward(req, res);
-	        		return;
+	        		errStuNoList.add(stuNo);
+	        		continue;
 	        	}
 	        	Test test = new Test();
 	        	
@@ -69,6 +77,13 @@ public class TestRegistExecuteAction extends Action {
 	        	
 	        	list.add(test);
 	        }
+		}
+
+		if (error != null) {
+			String stuNo = errStuNoList.get(0);
+			req.setAttribute("errStuNoList", errStuNoList);
+    		req.getRequestDispatcher("TestRegist.action?f1="+stuDao.get(stuNo).getEntYear()+"&f2="+stuDao.get(stuNo).getClassNum().trim()+"&f3="+subCd+"&f4="+no).forward(req, res);
+    		return;
 		}
 		
 		// 登録処理

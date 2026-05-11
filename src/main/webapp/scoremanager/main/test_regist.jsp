@@ -88,9 +88,11 @@
 									<td>${test.student.no}</td>
 									<td>${test.student.name}</td>
 									<td><input type="text" size="20" name="point_${test.student.no}" value="${test.point == -1 ? "" : test.point}"</td>
-									<c:if test="${test.student.no == errStuNo}">
+									<c:forEach var="errStuNo" items="${errStuNoList }">
+									  <c:if test="${test.student.no == errStuNo}">
 										<div class="mt-2 text-warning">${error}</div>
-									</c:if>
+									  </c:if>
+								  	</c:forEach>
 									<input type="hidden" name="regist" value="${test.student.no}">
 								</tr>
 							</c:forEach>

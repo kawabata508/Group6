@@ -18,7 +18,7 @@
 				<div class="m-3">
 					<label class="form-label" for="student-f1-select">科目コード</label>
 					<input type="text" class="form-control mb-3" id="student-f1-select" name="cd" value="${cd}" maxlength="3" placeholder="科目コードを入力してください" required />
-					<div>${error}</div>
+					<div class="mt-2 text-warning">${error}</div>
 					
 					<label class="form-label" for="student-f2-select">科目名</label>
 					<input type="text" class="form-control mb-3" id="student-f2-select" name="name" value="${name}" maxlength="20" placeholder="科目名を入力してください" required />

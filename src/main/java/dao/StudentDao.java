@@ -1,4 +1,3 @@
-// 杉本
 package dao;
 
 import java.sql.Connection;

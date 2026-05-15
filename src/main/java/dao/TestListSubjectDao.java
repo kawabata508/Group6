@@ -69,10 +69,11 @@ public class TestListSubjectDao extends Dao {
 		
 		try {
 			statement = connection.prepareStatement(
-					"select ent_year, test.student_no, student.name as student_name, test.class_num, test.no, test.point"
-					+ " from test join student on test.student_no = student.no and test.class_num = student.class_num and test.school_cd = student.school_cd"
-					+ " where student.ent_year=? and test.class_num=? and subject_cd=? and test.school_cd=?"
-					+ " order by student.no asc");
+					"select ent_year, t.student_no, s.name as student_name, t.class_num, t.no, t.point"
+					+ " from test t join student s"
+					+ " on t.student_no = s.no and t.class_num = s.class_num and t.school_cd = s.school_cd"
+					+ " where s.ent_year=? and t.class_num=? and t.subject_cd=? and t.school_cd=?"
+					+ " order by s.no asc");
 			statement.setInt(1, entYear);
 			statement.setString(2, classNum);
 			statement.setString(3, subject.getCd());
